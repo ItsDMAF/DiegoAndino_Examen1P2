@@ -1,19 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package diegoandino_examen1p2;
 
-/**
- *
- * @author Diego Andino
- */
 public class CRUD extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CRUD
-     */
     public CRUD() {
+
         initComponents();
     }
 
