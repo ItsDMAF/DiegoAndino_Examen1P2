@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
+
 public class Main extends javax.swing.JFrame {
+    
+     Scanner leer = new Scanner(System.in);
+
 
     public Main() {
         setVisible(true);
@@ -518,6 +522,25 @@ public class Main extends javax.swing.JFrame {
 
     private void IngreseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngreseActionPerformed
         //INGRESE PC
+            this.setVisible(false);
+            System.out.println("Ingrese la PC: ");
+            int pos = leer.nextInt();
+
+            System.out.println("ping - show - exit");
+            System.out.println(lista.get(pos).getHost() + "#");
+            String cadena = leer.next(); 
+            if (cadena.equals("ping")) {
+                ping(lista, pos);
+            } else if (cadena.equals("show")) {
+                System.out.println(PC_lista());
+                this.setVisible(true);
+                
+            } else if (cadena.equals("exit")) {
+                this.setVisible(true);
+            }
+            
+        
+        
     }//GEN-LAST:event_IngreseActionPerformed
 
     private void SiTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiTipActionPerformed
@@ -555,7 +578,6 @@ public class Main extends javax.swing.JFrame {
         }
 
         lista.add(new Laptop(marca, res, rgb, ip, mask, host));
-        JOptionPane.showMessageDialog(null, "Laptop Agregada");
     }//GEN-LAST:event_AgreLapActionPerformed
 
     private void AlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenActionPerformed
@@ -590,7 +612,6 @@ public class Main extends javax.swing.JFrame {
             tarjeta = false;
         }
         lista.add(new PC_Escritorio(ram, almacenamiento, tipo, tarjeta, ip, mask, host));
-        JOptionPane.showMessageDialog(null, "Escritorio Agregada");
     }//GEN-LAST:event_AgreEscriActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
@@ -715,17 +736,68 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     ArrayList<PC> lista = new ArrayList();
+    PC compu = new PC();
 
-    public String DecBin(int num) {
-        if (num > 1) {
-            String res = num % 2 + " ";
-            return DecBin(num / 2) + res;
-        } else {
-            if (num == 1) {
-                return 1 + " ";
-            } else {
-                return 0 + " ";
+    public void ping(ArrayList<PC> comp, int pos) {
+        System.out.println("Ingrese la IP: ");
+        String cad = leer.next();
+        String[] tokens = cad.split("\\.");
+        int decimal = Integer.parseInt(tokens[3]);
+        int binario = DecBin(decimal);
+        String[] tokensAtri = comp.get(pos).getIP().split("\\.");
+        int decAtributo = Integer.parseInt(tokensAtri[3]);
+        int binAtri = DecBin(decAtributo);
+        if (binario == binAtri) {
+            String[] MaskAtri = comp.get(pos).getMask().split("\\.");
+            int decMaskAtri = Integer.parseInt(MaskAtri[3]);
+            int binMaskAtri = DecBin(decMaskAtri);
+
+            if (binario == binMaskAtri) {
+                System.out.println("Pinging to " + cad + " with 32 bits of data: ");
+                for (int i = 0; i < 4; i++) {
+                    System.out.println("Reply from " + cad + ":" + " bytes = 32 time=37ms TTL = 46");
+                }
+                System.out.println("Ping statistics for " + cad + ":");
+                System.out.println("Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)");
+                
+            } else if (binario != binMaskAtri) {
+                System.out.println("Pinging to " + cad + " with 32 bits of data: ");
+                for (int i = 0; i < 4; i++) {
+                    System.out.println("Reply from " + cad + ":" + " Destination Host Unreachable");
+                }
+                System.out.println("Ping statistics for " + cad + ":");
+                System.out.println("Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)");
+                
+            } else if (binario != binAtri) {
+                System.out.println("Pinging to " + cad + " with 32 bits of data: ");
+                for (int i = 0; i < 4; i++) {
+                    System.out.println("Request timed out");
+                }
+                System.out.println("Ping statistics for " + cad + ":");
+                System.out.println("Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)");
             }
+
+        }
+
+    }
+
+    public int DecBin(int dec) {
+        if (dec < 2) {
+            return dec;
+        } else {
+            return dec % 2 + DecBin(dec / 2) * 10;
         }
     }
+
+    
+    public String PC_lista() {
+
+        String cadena = "";
+        for (PC t : lista) {
+            if (t instanceof PC) {
+                cadena += lista.indexOf(t) + "- " + t + "\n";
+            }
+        }
+        return cadena;
 }
+     }

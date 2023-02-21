@@ -1,10 +1,16 @@
-
 package diegoandino_examen1p2;
 
+import java.util.ArrayList;
+
 public class PC {
+
     private String host;
     private String IP;
     private String mask;
+
+    public PC() {
+
+    }
 
     public PC(String host, String IP, String mask) {
         this.host = host;
@@ -40,7 +46,6 @@ public class PC {
     public String toString() {
         return "PC" + "\nhost: " + host + "\nIP: " + IP + "\nmask: " + mask;
     }
-    
-    
+
     
 }
