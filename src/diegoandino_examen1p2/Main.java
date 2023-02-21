@@ -35,7 +35,7 @@ public class Main extends javax.swing.JFrame {
         Almacen = new javax.swing.JTextField();
         SiTar1 = new javax.swing.JRadioButton();
         Lista = new javax.swing.JButton();
-        RAM = new javax.swing.JTextField();
+        EliminarTF = new javax.swing.JTextField();
         NoRGB = new javax.swing.JRadioButton();
         AgreEscri = new javax.swing.JButton();
         Return = new javax.swing.JButton();
@@ -50,6 +50,7 @@ public class Main extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        RAM1 = new javax.swing.JTextField();
         Background = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         Salida = new javax.swing.JButton();
@@ -110,6 +111,11 @@ public class Main extends javax.swing.JFrame {
         Eliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Eliminar.setForeground(new java.awt.Color(204, 204, 204));
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
 
         Mask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,10 +151,15 @@ public class Main extends javax.swing.JFrame {
         Lista.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Lista.setForeground(new java.awt.Color(204, 204, 204));
         Lista.setText("Listar");
-
-        RAM.addActionListener(new java.awt.event.ActionListener() {
+        Lista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RAMActionPerformed(evt);
+                ListaActionPerformed(evt);
+            }
+        });
+
+        EliminarTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarTFActionPerformed(evt);
             }
         });
 
@@ -230,6 +241,12 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        RAM1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RAM1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CRUDLayout = new javax.swing.GroupLayout(CRUD.getContentPane());
         CRUD.getContentPane().setLayout(CRUDLayout);
         CRUDLayout.setHorizontalGroup(
@@ -238,26 +255,28 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Return)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(CRUDLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CRUDLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addGroup(CRUDLayout.createSequentialGroup()
-                                .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(AgreEscri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(AgreLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Lista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(jLabel7)))
-                    .addGroup(CRUDLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDLayout.createSequentialGroup()
+                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(AgreEscri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AgreLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Lista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDLayout.createSequentialGroup()
+                        .addComponent(EliminarTF, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,9 +290,7 @@ public class Main extends javax.swing.JFrame {
                                 .addContainerGap())
                             .addGroup(CRUDLayout.createSequentialGroup()
                                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(RAM, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                        .addComponent(Almacen))
+                                    .addComponent(Almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(CRUDLayout.createSequentialGroup()
                                         .addComponent(SiTip, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,6 +322,11 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(IP))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CRUDLayout.createSequentialGroup()
+                    .addGap(251, 251, 251)
+                    .addComponent(RAM1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addGap(258, 258, 258)))
         );
         CRUDLayout.setVerticalGroup(
             CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,11 +339,13 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(Lista)
                 .addGap(18, 18, 18)
                 .addComponent(Eliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Almacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(Almacen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EliminarTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(140, 140, 140)
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(SiTip)
@@ -338,8 +362,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(CRUDLayout.createSequentialGroup()
                         .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Mask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,7 +374,6 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
@@ -365,6 +387,11 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(SiRGB)
                     .addComponent(NoRGB))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CRUDLayout.createSequentialGroup()
+                    .addGap(142, 142, 142)
+                    .addComponent(RAM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(270, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -527,16 +554,16 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_SiTar1ActionPerformed
 
-    private void RAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RAMActionPerformed
+    private void EliminarTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RAMActionPerformed
+    }//GEN-LAST:event_EliminarTFActionPerformed
 
     private void AgreEscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreEscriActionPerformed
         //Escritorio agregar
         String ip = IP.getText();
         String mask = Mask.getText();
         String host = Host.getText();
-        int ram = RAM.getColumns();
+        int ram = EliminarTF.getColumns();
         int almacenamiento = Almacen.getColumns();
         boolean tipo = false;
         if (SiTip.isSelected()) {
@@ -550,7 +577,7 @@ public class Main extends javax.swing.JFrame {
         } else if (NoTar.isSelected()) {
             tarjeta = false;
         }
-        lista.add(new PC_Escritorio(ram, almacenamiento,tipo, tarjeta, ip, mask, host));
+        lista.add(new PC_Escritorio(ram, almacenamiento, tipo, tarjeta, ip, mask, host));
         JOptionPane.showMessageDialog(null, "Escritorio Agregada");
     }//GEN-LAST:event_AgreEscriActionPerformed
 
@@ -571,6 +598,24 @@ public class Main extends javax.swing.JFrame {
     private void NoTarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoTarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NoTarActionPerformed
+
+    private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListaActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // Eliminar
+        String num = EliminarTF.getText();
+
+        lista.remove(Integer.parseInt(num));
+        JOptionPane.showMessageDialog(null, "Posicion eliminada exitosamente");
+
+
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void RAM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RAM1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RAM1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,6 +661,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Crud;
     private javax.swing.JTextField Definicion;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JTextField EliminarTF;
     private javax.swing.JTextField Host;
     private javax.swing.JTextField IP;
     private javax.swing.JButton Ingrese;
@@ -626,7 +672,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton NoTar;
     private javax.swing.JRadioButton NoTip;
     private javax.swing.JLabel Pc;
-    private javax.swing.JTextField RAM;
+    private javax.swing.JTextField RAM1;
     private javax.swing.JButton Return;
     private javax.swing.JButton Salida;
     private javax.swing.JRadioButton SiRGB;
@@ -646,4 +692,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     ArrayList<PC> lista = new ArrayList();
+
+    public String DecBin(int num) {
+        if (num > 1) {
+            String res = num % 2 + " ";
+            return DecBin(num / 2) + res;
+        } else {
+            if (num == 1) {
+                return 1 + " ";
+            } else {
+                return 0 + " ";
+            }
+        }
+    }
 }
