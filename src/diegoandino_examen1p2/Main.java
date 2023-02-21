@@ -533,6 +533,25 @@ public class Main extends javax.swing.JFrame {
 
     private void AgreEscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreEscriActionPerformed
         //Escritorio agregar
+        String ip = IP.getText();
+        String mask = Mask.getText();
+        String host = Host.getText();
+        int ram = RAM.getColumns();
+        int almacenamiento = Almacen.getColumns();
+        boolean tipo = false;
+        if (SiTip.isSelected()) {
+            tipo = true;
+        } else if (NoTip.isSelected()) {
+            tipo = false;
+        }
+        boolean tarjeta = false;
+        if (SiTar1.isSelected()) {
+            tarjeta = true;
+        } else if (NoTar.isSelected()) {
+            tarjeta = false;
+        }
+        lista.add(new PC_Escritorio(ram, almacenamiento,tipo, tarjeta, ip, mask, host));
+        JOptionPane.showMessageDialog(null, "Escritorio Agregada");
     }//GEN-LAST:event_AgreEscriActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
