@@ -1,5 +1,9 @@
 package diegoandino_examen1p2;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 public class Main extends javax.swing.JFrame {
 
     public Main() {
@@ -332,9 +336,10 @@ public class Main extends javax.swing.JFrame {
             .addGroup(CRUDLayout.createSequentialGroup()
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(CRUDLayout.createSequentialGroup()
-                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(IP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Mask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,7 +502,21 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_MaskActionPerformed
 
     private void AgreLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreLapActionPerformed
-        // TODO add your handling code here:
+        //Laptop agregar
+        String ip = IP.getText();
+        String mask = Mask.getText();
+        String host = Host.getText();
+        String marca = Marca.getText();
+        String res = Definicion.getText();
+        boolean rgb = false;
+        if (SiRGB.isSelected()) {
+            rgb = true;
+        } else if (NoRGB.isSelected()) {
+            rgb = false;
+        }
+
+        lista.add(new Laptop(marca, res, rgb, ip, mask, host));
+        JOptionPane.showMessageDialog(null, "Laptop Agregada");
     }//GEN-LAST:event_AgreLapActionPerformed
 
     private void AlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenActionPerformed
@@ -513,7 +532,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_RAMActionPerformed
 
     private void AgreEscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreEscriActionPerformed
-        // TODO add your handling code here:
+        //Escritorio agregar
     }//GEN-LAST:event_AgreEscriActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
@@ -607,4 +626,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    ArrayList<PC> lista = new ArrayList();
 }
