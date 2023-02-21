@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-
 public class Main extends javax.swing.JFrame {
-    
-     Scanner leer = new Scanner(System.in);
 
+    Scanner leer = new Scanner(System.in);
 
     public Main() {
         setVisible(true);
@@ -521,28 +519,27 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_CrudActionPerformed
 
     private void IngreseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngreseActionPerformed
-        //INGRESE PC
-            this.setVisible(false);
-            System.out.println("Ingrese la PC: ");
-            int pos = leer.nextInt();
+//INGRESE PC--------------------------------------------------------------------
+        this.setVisible(false);
+        System.out.println("Ingrese la PC: ");
+        int pos = leer.nextInt();
 
-            System.out.println("ping - show - exit");
-            System.out.println(lista.get(pos).getHost() + "#");
-            String cadena = leer.next(); 
-            if (cadena.equals("ping")) {
-                ping(lista, pos);
-            } else if (cadena.equals("show")) {
-                System.out.println(PC_lista());
-                this.setVisible(true);
-                
-            } else if (cadena.equals("exit")) {
-                this.setVisible(true);
-            }
-            
-        
-        
+        System.out.println("ping - show - exit");
+        System.out.println(lista.get(pos).getHost() + "#");
+        String cadena = leer.next();
+//PING--------------------------------------------------------------------------
+        if (cadena.equals("ping...")) {
+            ping(pos, lista);
+//SHOW--------------------------------------------------------------------------
+        } else if (cadena.equals("show...")) {
+            System.out.println(PC_lista());
+            this.setVisible(true);
+//EXIT--------------------------------------------------------------------------
+        } else if (cadena.equals("exit...")) {
+            this.setVisible(true);
+        }
     }//GEN-LAST:event_IngreseActionPerformed
-
+//------------------------------------------------------------------------------
     private void SiTipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiTipActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SiTipActionPerformed
@@ -564,7 +561,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_MaskActionPerformed
 
     private void AgreLapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreLapActionPerformed
-        //Laptop agregar
+//Laptop agregar----------------------------------------------------------------
         String ip = IP.getText();
         String mask = Mask.getText();
         String host = Host.getText();
@@ -579,7 +576,7 @@ public class Main extends javax.swing.JFrame {
 
         lista.add(new Laptop(marca, res, rgb, ip, mask, host));
     }//GEN-LAST:event_AgreLapActionPerformed
-
+//------------------------------------------------------------------------------
     private void AlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlmacenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AlmacenActionPerformed
@@ -593,7 +590,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarTFActionPerformed
 
     private void AgreEscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreEscriActionPerformed
-        //Escritorio agregar
+//Escritorio agregar------------------------------------------------------------
         String ip = IP.getText();
         String mask = Mask.getText();
         String host = Host.getText();
@@ -613,7 +610,7 @@ public class Main extends javax.swing.JFrame {
         }
         lista.add(new PC_Escritorio(ram, almacenamiento, tipo, tarjeta, ip, mask, host));
     }//GEN-LAST:event_AgreEscriActionPerformed
-
+//------------------------------------------------------------------------------
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         //RETURN
         this.setVisible(true);
@@ -633,18 +630,18 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_NoTarActionPerformed
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
-        //Listar
+//Listar------------------------------------------------------------------------
         String resp = "";
-        int num = 1;
         for (PC pc : lista) {
-            resp += "PC-" + num + "\n";
-            resp += "Nombre: " + pc.getHost() + " IP: " + pc.getIP() + " Mask: " + pc.getMask() + "\n";
+            resp += "PC----------------" ;
+            resp += "\nNombre: " + pc.getHost() + "\nIP: " + pc.getIP() + "\nMask: " + pc.getMask() + "\n";
 
         }
+        resp += "\n";
 
         ListarTA.setText(resp);
     }//GEN-LAST:event_ListaActionPerformed
-
+//------------------------------------------------------------------------------
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // Eliminar
         String num = EliminarTF.getText();
@@ -738,37 +735,40 @@ public class Main extends javax.swing.JFrame {
     ArrayList<PC> lista = new ArrayList();
     PC compu = new PC();
 
-    public void ping(ArrayList<PC> comp, int pos) {
+    public void ping(int pos, ArrayList<PC> lista) {
         System.out.println("Ingrese la IP: ");
         String cad = leer.next();
-        String[] tokens = cad.split("\\.");
+
+        String[] tokens = cad.split(".");
         int decimal = Integer.parseInt(tokens[3]);
         int binario = DecBin(decimal);
-        String[] tokensAtri = comp.get(pos).getIP().split("\\.");
-        int decAtributo = Integer.parseInt(tokensAtri[3]);
-        int binAtri = DecBin(decAtributo);
-        if (binario == binAtri) {
-            String[] MaskAtri = comp.get(pos).getMask().split("\\.");
-            int decMaskAtri = Integer.parseInt(MaskAtri[3]);
-            int binMaskAtri = DecBin(decMaskAtri);
 
-            if (binario == binMaskAtri) {
+        String[] token = lista.get(pos).getIP().split(".");
+        int dec = Integer.parseInt(token[3]);
+        int bin = DecBin(dec);
+
+        if (binario == bin) {
+            String[] Mask = lista.get(pos).getMask().split(".");
+            int dec_mask = Integer.parseInt(Mask[3]);
+            int bin_mask = DecBin(dec_mask);
+//Caso 1------------------------------------------------------------------------
+            if (binario == bin_mask) {
                 System.out.println("Pinging to " + cad + " with 32 bits of data: ");
                 for (int i = 0; i < 4; i++) {
                     System.out.println("Reply from " + cad + ":" + " bytes = 32 time=37ms TTL = 46");
                 }
                 System.out.println("Ping statistics for " + cad + ":");
                 System.out.println("Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)");
-                
-            } else if (binario != binMaskAtri) {
+//Caso 2------------------------------------------------------------------------
+            } else if (binario != bin_mask) {
                 System.out.println("Pinging to " + cad + " with 32 bits of data: ");
                 for (int i = 0; i < 4; i++) {
                     System.out.println("Reply from " + cad + ":" + " Destination Host Unreachable");
                 }
                 System.out.println("Ping statistics for " + cad + ":");
                 System.out.println("Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)");
-                
-            } else if (binario != binAtri) {
+//Caso 3------------------------------------------------------------------------
+            } else if (binario != bin) {
                 System.out.println("Pinging to " + cad + " with 32 bits of data: ");
                 for (int i = 0; i < 4; i++) {
                     System.out.println("Request timed out");
@@ -789,15 +789,14 @@ public class Main extends javax.swing.JFrame {
         }
     }
 
-    
     public String PC_lista() {
 
-        String cadena = "";
+        String areglo = "";
         for (PC t : lista) {
             if (t instanceof PC) {
-                cadena += lista.indexOf(t) + "- " + t + "\n";
+                areglo += lista.indexOf(t) + "-" + t + "\n";
             }
         }
-        return cadena;
+        return areglo;
+    }
 }
-     }

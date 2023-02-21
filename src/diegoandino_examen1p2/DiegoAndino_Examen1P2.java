@@ -6,10 +6,7 @@ public class DiegoAndino_Examen1P2 {
     public static void main(String[] args) {
         Main menu = new Main();
 
-        
-        
-        
-        
+        //BUENO CREO QUE TODO FUNCIONA... CREO.
     }
     
 }
