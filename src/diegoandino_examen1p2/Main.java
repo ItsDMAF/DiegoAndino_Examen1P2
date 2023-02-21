@@ -51,6 +51,8 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         RAM1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListarTA = new javax.swing.JTextArea();
         Background = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         Salida = new javax.swing.JButton();
@@ -247,6 +249,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        ListarTA.setColumns(20);
+        ListarTA.setRows(5);
+        jScrollPane1.setViewportView(ListarTA);
+
         javax.swing.GroupLayout CRUDLayout = new javax.swing.GroupLayout(CRUD.getContentPane());
         CRUD.getContentPane().setLayout(CRUDLayout);
         CRUDLayout.setHorizontalGroup(
@@ -283,20 +289,21 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(CRUDLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(Almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(CRUDLayout.createSequentialGroup()
+                                    .addComponent(SiTip, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(NoTip)
+                                    .addGap(12, 12, 12)))
                             .addGroup(CRUDLayout.createSequentialGroup()
                                 .addComponent(SiTar1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(NoTar)
-                                .addContainerGap())
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(CRUDLayout.createSequentialGroup()
-                                .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Almacen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(CRUDLayout.createSequentialGroup()
-                                        .addComponent(SiTip, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(NoTip)
-                                        .addGap(12, 12, 12)))
-                                .addGap(53, 53, 53)
+                                .addGap(81, 81, 81)
                                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel10)
@@ -314,7 +321,10 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(SiRGB, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(NoRGB)
-                                        .addGap(45, 45, 45))))))
+                                        .addGap(45, 45, 45))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CRUDLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
                     .addGroup(CRUDLayout.createSequentialGroup()
                         .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Host, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
@@ -325,7 +335,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CRUDLayout.createSequentialGroup()
                     .addGap(251, 251, 251)
-                    .addComponent(RAM1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(RAM1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                     .addGap(258, 258, 258)))
         );
         CRUDLayout.setVerticalGroup(
@@ -335,7 +345,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(AgreLap)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AgreEscri)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(Lista)
                 .addGap(18, 18, 18)
                 .addComponent(Eliminar)
@@ -355,7 +365,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(NoTar)
                     .addComponent(SiTar1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(Return))
             .addGroup(CRUDLayout.createSequentialGroup()
                 .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -386,6 +396,8 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(SiRGB)
                     .addComponent(NoRGB))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(CRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(CRUDLayout.createSequentialGroup()
@@ -600,7 +612,16 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_NoTarActionPerformed
 
     private void ListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaActionPerformed
-        // TODO add your handling code here:
+        //Listar
+        String resp = "";
+        int num = 1;
+        for (PC pc : lista) {
+            resp += "PC-" + num + "\n";
+            resp += "Nombre: " + pc.getHost() + " IP: " + pc.getIP() + " Mask: " + pc.getMask() + "\n";
+
+        }
+
+        ListarTA.setText(resp);
     }//GEN-LAST:event_ListaActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
@@ -666,6 +687,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField IP;
     private javax.swing.JButton Ingrese;
     private javax.swing.JButton Lista;
+    private javax.swing.JTextArea ListarTA;
     private javax.swing.JTextField Marca;
     private javax.swing.JTextField Mask;
     private javax.swing.JRadioButton NoRGB;
@@ -690,6 +712,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     ArrayList<PC> lista = new ArrayList();
 
